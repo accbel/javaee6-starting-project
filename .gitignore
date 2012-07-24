@@ -1,0 +1,6 @@
+.classpath
+.project
+.settings/
+target/
+cobertura.ser
+.DS_Store

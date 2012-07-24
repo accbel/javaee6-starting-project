@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/templates/main.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<div class="row">
+					<div class="span2">
+						<h:outputLabel for="carName" value="Nome"/>
+						<f:validateBean disabled="#{true}">
+							<h:inputText id="carName" label="Nome" value="#{carController.car.name}"/>
+						</f:validateBean>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span2">
+						<h:commandButton action="#{carController.search}" value="Buscar" styleClass="btn btn-primary"/>
+					</div>
+				</div>
+				<h:dataTable value="#{carController.list}" var="c" styleClass="table">
+	    			<h:column>
+	    				<f:facet name="header">Nome</f:facet>
+	    				#{c.name}
+	    			</h:column>
+	    			<h:column>
+	    				<f:facet name="header">Ações</f:facet>
+	    				<h:commandLink action="#{carController.edit}" value="Editar"/>
+	    				<h:commandLink action="#{carController.remove}" value="Excluir"/>
+	    			</h:column>
+	    		</h:dataTable>
+    		</h:form>
+   			<div class="form-actions">
+   				<h:link outcome="form" value="Novo" styleClass="btn"/>
+   			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
